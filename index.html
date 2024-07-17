@@ -3,12 +3,91 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="shortcut icon" href="./img/icono.png" />
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="css/style.css" >
     <title>Cajero Automatico</title>
 </head>
 <body>
+    <div class="opciones-clientes" id="opciones-jugador">
+        <h2> Elige una opción: </h2>
+        <button class="opcion" data-opcion="Mali">Mali</button>
+        <button class="opcion" data-opcion="Gera">Gera</button>
+        <button class="opcion" data-opcion="Maui">Maui</button>
+    </div>
 
+    <div class="resultado" id="resultado-cliente" style="display: none;">
+        <p class="mensaje" id="mensaje"></p>
+    </div>
+    <div id="opciones-cuenta" class="opciones-cuenta" style="display: none;" >
+        <button class="opciones" id="consultar-saldo" onclick="consultarSaldo()">Consultar saldo</button>
+        <button class="opciones" id="ingresar-monto" onclick="monto()" >Ingresar monto</button>
+        <button class="opciones" id="retirar-monto" onclick="monto()">Retirar monto</button>
+        <button class="opciones" id="salir" onclick="exit()">Salir</button>
+      </div>
 
+      <div class="resultado" id="resultado-saldo" style="display: none;">
+        <h3>Tu saldo es:</h3>
+        <p class="mensaje" id="mensaje"></p>
+    </div>
+
+    <div class="content-body" id="cont-body"style="display: none;">
+        <div id="content-cajero" class="content-cajero" >
+            <!-- pantalla donde se va a estar visualisando todo  -->
+            <div class="screen" id="screen">
+                <input id="screen-result" type="text" placeholder="ATM">
+            </div>
+            <!-- Numeros del cajero automatico -->
+            <div class="btn-caj btn-caj-radius">
+                <input id="uno" type="button" value="1" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input id="dos" type="button" value="2" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input id="tres" type="button" value="3" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius  btn-caj-cancel">
+                <input type="button" value="Cancel" id="cancel-button" onclick="cancelOperation()">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input id="cuatro" type="button" value="4" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input id="cinco" type="button" value="5" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input id="seis" type="button" value="6" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius btn-caj-clear">
+                <input type="button" value="Clear" onclick="clean()">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input id="siete" type="button" value="7" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input id="ocho" type="button" value="8" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input id="nueve" type="button" value="9" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius btn-caj-enter">
+                <input type="button" value="Enter" onclick="enter(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input type="button" value="" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius"> 
+                <input id="cero" type="button" value="0" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input type="button" value="" onclick="getData(this)">
+            </div>
+            <div class="btn-caj btn-caj-radius">
+                <input type="button" value="" onclick="getData(this)">
+            </div>
+        </div>
+    </div>
     <script src="js/main.js"></script>
 </body>
 </html>
