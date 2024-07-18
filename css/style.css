@@ -113,6 +113,10 @@ body{
     background-color: rgb(19,123,60);
 }
 
+.btn-caj-retirar{
+    background-color: rgb(66,87,244);
+}
+
 .btn-caj-radius{
     border-radius: 15px;
 }

@@ -1,5 +1,3 @@
-
-
    const opcionClientes = document.querySelectorAll('.opcion')
    const resultadoMensaje = document.getElementById('mensaje')
 
@@ -47,26 +45,23 @@
         }
     }}
 
-    //Mostrar saldo actual
-    function consultarSaldo(opcionSeleccionada){
-        const mensajeOperacion = document.getElementById("resultado-saldo");
-        if (opcionSeleccionada === 'Mali'){
-            console.log("entraste al saldo");
-            mensajeOperacion.textContent = `Tu saldo actual es: $200`;
-        }else if(opcionSeleccionada === 'Gera'){
-            console.log("entraste al saldo");
-            mensajeOperacion.textContent = `Tu saldo actual es: $290`;
-        }else if(opcionSeleccionada === 'Maui'){
-            console.log("entraste al saldo");
-            mensajeOperacion.textContent = `Tu saldo actual es: $67`;
-        }
-        mensajeOperacion.style.display = "flex";
-    };
-
     //Aparecer el cajero Automatico
-    function monto(){
+    function montoIngresar(){
         const montos = document.getElementById("cont-body");
         montos.style.display = "flex";
+        const agregar = document.getElementById("retirar");
+        agregar.style.display = "none";
+        const enter = document.getElementById("enter");
+        enter.style.display = "flex";
+    }
+
+    function montoRetirar(){
+        const montos = document.getElementById("cont-body");
+        montos.style.display = "flex";
+        const retirar = document.getElementById("enter");
+        retirar.style.display = "none";
+        const withdraw = document.getElementById("retirar");
+        withdraw.style.display = "flex";
     }
 
     //Salir del Proceso
@@ -94,8 +89,57 @@
         }
     }
 
+    //----------------------------Agregar o Retirar Saldo --------------------
+    const screenResult = document.getElementById('screen-result');
+    let enteredAmount = 0.0; 
+    let saldoActual = 200.0; 
+    
+    function getData(inputElement) {
+    const value = parseFloat(inputElement.value);
+    if (isNaN(value)) {
+        return; 
+    }
+        enteredAmount = enteredAmount * 10 + value;
+        screenResult.value = enteredAmount.toFixed(2); 
+    }
+
+    //Agregar Saldo
+    function enter() {
+    if (enteredAmount > 0) {
+        saldoActual += enteredAmount; 
+        enteredAmount = 0.0; 
+        screenResult.value = `Saldo: ${saldoActual}`;
+        alert("Se agrego saldo con exito") 
+    } else {
+        alert('Ingrese un monto válido.'); 
+        }
+    }
+
+    //Retirar Saldo
+    function retirar() {
+      if (enteredAmount > 0) {
+        const newSaldo = saldoActual - enteredAmount;
+    
+        if (enteredAmount <= 10.0) {
+          alert('Saldo insuficiente. Mínimo: $10.00');
+          console.log("Entro a la validacion de -10");
+        } else if (enteredAmount >= 990.0) {
+          alert('Retiro no permitido. Máximo: $990.00');
+          console.log("Entro a la validacion de 990");
+        } else {
+          saldoActual = newSaldo;
+          enteredAmount = 0.0;
+          screenResult.value = `Saldo: $${newSaldo.toFixed(2)}`;
+          alert("Retiro con exito!")
+        }
+      } else {
+        alert('Ingrese un monto válido para retirar.');
+      }
+    }
+
     //Limpiar la pantalla
     function clean() {
+        enteredAmount = 0.0;
         screen.value = '';
         console.log("Se limpio la pantalla")
     }
@@ -107,7 +151,7 @@
         screen.value = '';
         console.log("Se cancelo la operacion")
         alert('Operación cancelada');
-      }
+    }
 
     //Se recorre el arreglo o lista llamada opciones
     opcionClientes.forEach(opcion => {
